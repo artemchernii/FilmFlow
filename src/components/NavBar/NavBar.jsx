@@ -4,6 +4,7 @@ import { Menu, AccountCircle, Brightness4, Brightness7 } from '@mui/icons-materi
 import { useTheme } from '@mui/material/styles';
 import useStyles from './styles';
 import Sidebar from '../Sidebar/Sidebar';
+import Search from '../Search/Search';
 
 const NavBar = () => {
   const classes = useStyles();
@@ -30,7 +31,7 @@ const NavBar = () => {
           <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => {}}>
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
-          {!isMobile && 'Search...'}
+          {!isMobile && <Search />}
           <div>
             {!isAuthenticated ? (
               <Button color="inherit" onClick={() => {}}>
@@ -43,9 +44,10 @@ const NavBar = () => {
               </Button>
             )}
           </div>
-          {isMobile && 'Search(mobile)...'}
+          {isMobile && <Search />}
         </Toolbar>
       </AppBar>
+      {/* Sidebar */}
       <div>
         <nav className={classes.drawer}>
           {isMobile ? (
