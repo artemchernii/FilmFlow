@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   Divider,
   List,
@@ -32,10 +32,6 @@ const demoCategories = [
 const Sidebar = ({ setMobileOpen }) => {
   const theme = useTheme();
   const classes = useClasses();
-
-  useEffect(() => {
-    console.log('sidebar', theme.palette.mode);
-  }, []);
 
   return (
     <>
