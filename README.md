@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+<b>Use NVM USE 16 before installation</b>
+
 ## Available Scripts
 
 In the project directory, you can run:
