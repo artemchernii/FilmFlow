@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Box, CircularProgress, useMediaQuery, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
-// import { MovieList } from '..';
+import { useGetMoviesQuery } from '../../services/TMDB';
 import MovieList from '../MovieList/MovieList';
 
-import { useGetMoviesQuery } from '../../services/TMDB';
+// import { MovieList } from '..';
 
 const Movies = () => {
-  const { data: movies, isLoading, isSuccess, isError, error } = useGetMoviesQuery();
+  const [page, setPage] = useState(1);
+  const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
+  const { data: movies, isLoading, isError, error } = useGetMoviesQuery({ genreIdOrCategoryName, page });
   if (isLoading) {
     return (
       <Box display="flex" justifyContent="center">
@@ -26,12 +28,7 @@ const Movies = () => {
   if (isError) {
     return error.message;
   }
-  return (
-    <>
-      <div>Movies</div>
-      {isSuccess && <MovieList movies={movies} />}
-    </>
-  );
+  return <MovieList movies={movies} />;
 };
 export default Movies;
 
