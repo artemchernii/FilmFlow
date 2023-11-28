@@ -1,15 +1,23 @@
 import React, { useState } from 'react';
 import { Box, CircularProgress, useMediaQuery, Typography } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useGetMoviesQuery } from '../../services/TMDB';
 import MovieList from '../MovieList/MovieList';
-
-// import { MovieList } from '..';
+import Pagination from '../Pagination/Pagination';
 
 const Movies = () => {
+  const location = useLocation();
   const [page, setPage] = useState(1);
   const { genreIdOrCategoryName, searchQuery } = useSelector((state) => state.currentGenreOrCategory);
   const { data: movies, isLoading, isError, error } = useGetMoviesQuery({ genreIdOrCategoryName, page, searchQuery });
+  const lg = useMediaQuery((theme) => theme.breakpoints.only('lg'));
+  const numberOfMovies = lg ? 16 : 18;
+
+  if (location.pathname === '/approved') {
+    window.history.replaceState(null, 'Movies', '/');
+  }
+
   if (isLoading) {
     return (
       <Box display="flex" justifyContent="center" alignItems="center" height="50dvh">
@@ -28,7 +36,12 @@ const Movies = () => {
   if (isError) {
     return error.message;
   }
-  return <MovieList movies={movies} />;
+  return (
+    <>
+      <MovieList movies={movies} numberOfMovies={numberOfMovies} />
+      <Pagination currentPage={page} setPage={setPage} totalPages={movies.total_pages} />
+    </>
+  );
 };
 export default Movies;
 

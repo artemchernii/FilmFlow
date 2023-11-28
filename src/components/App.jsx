@@ -19,9 +19,15 @@ const App = () => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Routes>
+          {['/', '/approved'].map((path) => (
+            <Route
+              key="Movies" // optional: avoid full re-renders on route changes
+              path={path}
+              element={<Movies />}
+            />
+          ))}
           <Route path="movie/:id" element={<MovieInformation />} />
           <Route path="actors/:id" element={<Actors />} />
-          <Route path="/" element={<Movies />} />
           <Route path="profile/:id" element={<Profile />} />
         </Routes>
       </main>

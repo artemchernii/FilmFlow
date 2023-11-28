@@ -5,6 +5,7 @@ const genreOrCategory = createSlice({
   name: 'genreOrCategory',
   initialState: {
     genreIdOrCategoryName: '',
+    // TODO: do we really need this page here?
     page: 1,
     searchQuery: '',
   },
