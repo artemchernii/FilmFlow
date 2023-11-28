@@ -12,20 +12,22 @@ import { Modal,
   useMediaQuery,
   Rating } from '@mui/material';
 import { Movie as MovieIcon, Theaters, Language, PlusOne, Favorite, FavoriteBorderOutlined, Remove, ArrowBack } from '@mui/icons-material';
+import Pagination from '@mui/material/Pagination';
 import { useGetRecommendationsQuery, useGetMovieQuery } from '../../services/TMDB';
 import useStyles from './styles';
 import genresIcons from '../../assets/genres';
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
 import MovieList from '../MovieList/MovieList';
+// import Pagination from '../Pagination/Pagination';
 
 const MovieInformation = () => {
   const classes = useStyles();
   const { id } = useParams();
   const dispatch = useDispatch();
   const [isOpenModal, setIsOpenModal] = useState(false);
-
+  const [page, setPage] = useState(1);
   const { data: movie, isFetching, isError } = useGetMovieQuery({ id });
-  const { data: recommendations, isFetching: isFetchingRecommendation, isErrorRecommendation } = useGetRecommendationsQuery({ id, list: '/recommendations' });
+  const { data: recommendations, isFetching: isFetchingRecommendation, isErrorRecommendation } = useGetRecommendationsQuery({ id, list: '/recommendations', page });
 
   const isMovieFavored = false;
   const isMovieWatchlisted = false;
@@ -35,6 +37,10 @@ const MovieInformation = () => {
   };
   const addToFavorite = () => {};
   const addToWatchlist = () => {};
+
+  const handleChangePage = (event, step) => {
+    setPage(step);
+  };
 
   if (isFetching) {
     return (
@@ -83,7 +89,7 @@ const MovieInformation = () => {
             variant="h6"
             align="center"
             gutterBottom
-          >{movie?.runtime}min / {movie?.spoken_languages.length > 0 ? movie?.spoken_languages[0].name : null}
+          >{movie?.runtime}min / Language: { movie?.spoken_languages[0].name }
           </Typography>
         </Grid>
         <Grid item className={classes.genresContainer}>
@@ -137,50 +143,50 @@ const MovieInformation = () => {
         </Grid>
         {/* Additional functionality */}
         <Grid item container style={{ marginTop: '2rem' }}>
-          <div className={classes.buttonsContainer}>
-            <Grid item xs={12} sm={6} className={classes.buttonsContainer}>
-              <ButtonGroup size="medium" variant="outlined">
-                <Button
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={movie?.homepage}
-                  endIcon={<Language />}
-                >
-                  Website
-                </Button>
-                <Button
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={`https://www.imdb.com/title/${movie?.imdb_id}`}
-                  endIcon={<MovieIcon />}
-                >
-                  IMDB
-                </Button>
-                <Button onClick={() => setIsOpenModal(true)} href="#" endIcon={<Theaters />}>
-                  Trailer
-                </Button>
-              </ButtonGroup>
-              <ButtonGroup size="medium" variant="outlined">
-                <Button
-                  onClick={addToFavorite}
-                  endIcon={isMovieFavored ? <FavoriteBorderOutlined /> : <Favorite />}
-                >
-                  {isMovieFavored ? 'Unfavorite' : 'Favorite'}
-                </Button>
-                <Button
-                  onClick={addToWatchlist}
-                  endIcon={isMovieWatchlisted ? <Remove /> : <PlusOne />}
-                >
-                  WatchList
-                </Button>
-                <Button component={Link} to="/" endIcon={<ArrowBack />} sx={{ borderColor: 'primary.main' }}>
-                  <Typography color="inherit" variant="subtitle1">
-                    Back
-                  </Typography>
-                </Button>
-              </ButtonGroup>
-            </Grid>
-          </div>
+          {/* <div className={classes.buttonsContainer}> */}
+          <Grid item xs={12} sm={12} className={classes.buttonsContainer}>
+            <ButtonGroup size="medium" variant="outlined" fullWidth>
+              <Button
+                target="_blank"
+                rel="noopener noreferrer"
+                href={movie?.homepage}
+                endIcon={<Language />}
+              >
+                Website
+              </Button>
+              <Button
+                target="_blank"
+                rel="noopener noreferrer"
+                href={`https://www.imdb.com/title/${movie?.imdb_id}`}
+                endIcon={<MovieIcon />}
+              >
+                IMDB
+              </Button>
+              <Button onClick={() => setIsOpenModal(true)} href="#" endIcon={<Theaters />}>
+                Trailer
+              </Button>
+            </ButtonGroup>
+            <ButtonGroup size="medium" variant="outlined" fullWidth>
+              <Button
+                onClick={addToFavorite}
+                endIcon={isMovieFavored ? <FavoriteBorderOutlined /> : <Favorite />}
+              >
+                {isMovieFavored ? 'Unfavorite' : 'Favorite'}
+              </Button>
+              <Button
+                onClick={addToWatchlist}
+                endIcon={isMovieWatchlisted ? <Remove /> : <PlusOne />}
+              >
+                WatchList
+              </Button>
+              <Button component={Link} to="/" endIcon={<ArrowBack />} sx={{ borderColor: 'primary.main' }}>
+                <Typography color="inherit" variant="subtitle1">
+                  Back
+                </Typography>
+              </Button>
+            </ButtonGroup>
+          </Grid>
+          {/* </div> */}
         </Grid>
       </Grid>
       {/* Recommendation */}
@@ -189,7 +195,14 @@ const MovieInformation = () => {
           You might also like
         </Typography>
         {recommendations && !isFetchingRecommendation
-          ? <MovieList movies={recommendations} numberOfMovies={12} />
+          ? (
+            <Box>
+              <MovieList movies={recommendations} numberOfMovies={12} />
+              <Box display="flex" justifyContent="center">
+                <Pagination page={page} onChange={handleChangePage} count={recommendations.total_pages} />
+              </Box>
+            </Box>
+          )
           : (
             <Box>
               Sorry, nothing was found.

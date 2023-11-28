@@ -13,14 +13,17 @@ export default makeStyles((theme) => ({
   poster: {
     borderRadius: '20px',
     boxShadow: '0.5em 0.5em 1em rgb(64,64,64)',
-    width: '90%',
+    width: '100%',
+    height: 'max-content',
+    marginTop: '20px',
     marginBottom: '10px',
 
     [theme.breakpoints.down('md')]: {
       margin: '0 auto',
       width: '50%',
-      height: '350px',
       marginBottom: '15px',
+      display: 'flex',
+      justifyContent: 'center',
     },
     [theme.breakpoints.down('sm')]: {
       margin: '0 auto',
@@ -60,8 +63,8 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     width: '100%',
-    [theme.breakpoints.down('sm')]: {
-      flexDirection: 'column',
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column !important',
     },
   },
   modal: {
