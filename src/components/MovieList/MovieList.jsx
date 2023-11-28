@@ -5,12 +5,14 @@ import useStyles from './styles';
 
 // import { Movie } from '..';
 
-const MovieList = ({ movies }) => {
+const MovieList = ({ movies, numberOfMovies }) => {
   const classes = useStyles();
 
   return (
     <Grid container className={classes.moviesContainer}>
-      {movies.results.map((movie, i) => <Movie key={movie.id} movie={movie} index={i} />)}
+      {movies.results.slice(0, numberOfMovies).filter((movie) => movie.poster_path).map((movie, i) => (
+        <Movie key={movie.id} movie={movie} index={i} />
+      ))}
     </Grid>
   );
 };
