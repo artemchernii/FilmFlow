@@ -8,11 +8,11 @@ import MovieList from '../MovieList/MovieList';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
-  const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
-  const { data: movies, isLoading, isError, error } = useGetMoviesQuery({ genreIdOrCategoryName, page });
+  const { genreIdOrCategoryName, searchQuery } = useSelector((state) => state.currentGenreOrCategory);
+  const { data: movies, isLoading, isError, error } = useGetMoviesQuery({ genreIdOrCategoryName, page, searchQuery });
   if (isLoading) {
     return (
-      <Box display="flex" justifyContent="center">
+      <Box display="flex" justifyContent="center" alignItems="center" height="50dvh">
         <CircularProgress />
       </Box>
     );
