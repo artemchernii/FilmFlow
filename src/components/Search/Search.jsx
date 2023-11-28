@@ -10,9 +10,7 @@ const Search = () => {
   const [query, setQuery] = useState('');
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { searchQuery } = useSelector((state) => state.currentGenreOrCategory);
 
-  console.log(searchQuery);
   const handleKeyUp = ({ key }) => {
     if (key === 'Enter') {
       dispatch(searchMovie(query));
