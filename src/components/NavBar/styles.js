@@ -32,5 +32,8 @@ export default makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    ':-webkit-scrollbar': {
+      display: 'none',
+    },
   },
 }));

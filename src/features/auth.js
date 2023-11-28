@@ -18,9 +18,14 @@ const authSlice = createSlice({
 
       localStorage.setItem('account_id', action.payload.id);
     },
+    logout(state) {
+      state.isAuthenticated = false;
+      state.sessionId = '';
+      state.user = {};
+    },
   },
 });
 
-export const { setUser } = authSlice.actions;
+export const { setUser, logout } = authSlice.actions;
 export const authSliceReducer = authSlice.reducer;
 export const userSelector = (state) => state.user;

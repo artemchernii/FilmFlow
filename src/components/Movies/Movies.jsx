@@ -12,7 +12,7 @@ const Movies = () => {
   const { data: movies, isLoading, isError, error } = useGetMoviesQuery({ genreIdOrCategoryName, page, searchQuery });
   if (isLoading) {
     return (
-      <Box display="flex" justifyContent="center">
+      <Box display="flex" justifyContent="center" alignItems="center" height="50dvh">
         <CircularProgress />
       </Box>
     );
