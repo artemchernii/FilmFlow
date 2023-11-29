@@ -42,6 +42,8 @@ const MovieInformation = () => {
     setPage(step);
   };
 
+  console.log(eqweqew);
+
   if (isFetching) {
     return (
       <Box display="flex" justifyContent="center" alignItems="center" height="50dvh">
