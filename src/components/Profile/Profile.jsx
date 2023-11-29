@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Typography, Button, Box } from '@mui/material';
 import { ExitToApp } from '@mui/icons-material';
 import { userSelector, logout as logoutType } from '../../features/auth';
+import RatedCards from '../RatedCards/RatedCards';
+import { useGetListQuery } from '../../services/TMDB';
 
 const Profile = () => {
-  const params = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
+  const [page, setPage] = useState(1);
   const { user } = useSelector(userSelector);
+  const { data: favoriteMovies, refetch: favoriteMoviesRefetch } = useGetListQuery({ id, page, list: 'favorite/movies', sessionId: localStorage.getItem('session_id') });
+  const { data: watchlistMovies, refetch: watchlistMoviesRefetch } = useGetListQuery({ id, page, list: 'watchlist/movies', sessionId: localStorage.getItem('session_id') });
   const dispatch = useDispatch();
-  const favoriteMovies = [];
-  console.log('Profile', { params, navigate, user });
+
+  useEffect(() => {
+    favoriteMoviesRefetch();
+    watchlistMoviesRefetch();
+  }, []);
+
   const logout = () => {
     localStorage.clear();
     dispatch(logoutType());
@@ -32,10 +41,15 @@ const Profile = () => {
           />
         </Box>
       ) : null}
-      {!favoriteMovies.length ? (
+      {!favoriteMovies?.results?.length && !watchlistMovies?.results?.length ? (
         <Typography>Add favorites movies to see theme here!</Typography>
       )
-        : <Box>FAVS</Box>}
+        : (
+          <Box>
+            <RatedCards title="Favorite Movies" movies={favoriteMovies?.results} />
+            <RatedCards title="Watchlist Movies" movies={watchlistMovies?.results} />
+          </Box>
+        )}
     </Box>
   );
 };

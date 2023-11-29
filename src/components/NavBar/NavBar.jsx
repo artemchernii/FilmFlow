@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AppBar, IconButton, Toolbar, Drawer, Button, Avatar, useMediaQuery } from '@mui/material';
 import { Menu, AccountCircle, Brightness4, Brightness7 } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
@@ -10,6 +10,7 @@ import Search from '../Search/Search';
 import profileIcon from '../../assets/icons/user.png';
 import { fetchToken, moviesApi, createSessionId } from '../../utils';
 import { setUser, userSelector } from '../../features/auth';
+import { ColorModeContext } from '../../utils/ToggleColorMode';
 
 const NavBar = () => {
   const classes = useStyles();
@@ -20,6 +21,7 @@ const NavBar = () => {
   const token = localStorage.getItem('request_token');
   const sessionIdFromLocalStorage = localStorage.getItem('session_id');
   const dispatch = useDispatch();
+  const { toggleColorMode } = useContext(ColorModeContext);
 
   useEffect(() => {
     const logInUser = async () => {
@@ -52,7 +54,7 @@ const NavBar = () => {
               <Menu />
             </IconButton>
           ) : null}
-          <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => {}}>
+          <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => toggleColorMode()}>
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
           {!isMobile && <Search />}
@@ -71,7 +73,11 @@ const NavBar = () => {
                 sx={{ textTransform: 'capitalize' }}
               >
                 {!isMobile && <>My movies &nbsp;</> }
-                <Avatar style={{ width: 25, height: 25 }} alt="Profile" src={profileIcon} />
+                <Avatar
+                  style={{ width: 25, height: 25 }}
+                  alt="Profile"
+                  src={`https://www.themoviedb.org/t/p/w64_and_h64_face${user?.avatar?.tmdb?.avatar_path}`}
+                />
               </Button>
             )}
           </div>

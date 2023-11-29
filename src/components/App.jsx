@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { CssBaseline } from '@mui/material';
 import {
   Routes,
   Route,
 } from 'react-router-dom';
 import useStyles from './styles';
-
+import useAlan from './AlanAI/useAlan';
 import { MovieInformation, NavBar, Profile, Movies, Actors } from '.';
 
 const App = () => {
   const classes = useStyles();
+  const alanBtnContainer = useRef(null);
+  useAlan();
 
   return (
     <div className={classes.root}>
@@ -31,6 +33,7 @@ const App = () => {
           <Route path="profile/:id" element={<Profile />} />
         </Routes>
       </main>
+      <div ref={alanBtnContainer} />
     </div>
   );
 };

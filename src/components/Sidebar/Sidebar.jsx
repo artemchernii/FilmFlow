@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Divider,
   List,
@@ -35,6 +35,11 @@ const Sidebar = ({ setMobileOpen }) => {
   const dispatch = useDispatch();
 
   const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
+
+  useEffect(() => {
+    setMobileOpen();
+    return () => console.log('clean up');
+  }, [genreIdOrCategoryName]);
 
   return (
     <>

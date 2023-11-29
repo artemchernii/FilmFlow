@@ -5,13 +5,13 @@ import useStyles from './styles';
 
 // import { Movie } from '..';
 
-const MovieList = ({ movies, numberOfMovies }) => {
+const MovieList = ({ movies, numberOfMovies, excludeFirst }) => {
   console.log(movies);
   const classes = useStyles();
 
   return (
     <Grid container className={classes.moviesContainer}>
-      {movies.results.slice(0, numberOfMovies).filter((movie) => movie.poster_path).map((movie, i) => (
+      {movies.results.slice(excludeFirst ? 1 : 0, numberOfMovies).filter((movie) => movie.poster_path).map((movie, i) => (
         <Movie key={movie.id} movie={movie} index={i} />
       ))}
     </Grid>
