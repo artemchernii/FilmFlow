@@ -1,10 +1,13 @@
-import { useEffect, useContext } from 'react';
-import alanBtn from '@alan-ai/alan-sdk-web';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { ColorModeContext } from '../../utils/ToggleColorMode';
-import { fetchToken } from '../../utils';
-import { searchMovie, selectGenreOrCategory } from '../../features/currentGenreOrCategory';
+import { useEffect, useContext } from "react";
+import alanBtn from "@alan-ai/alan-sdk-web";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { ColorModeContext } from "../../utils/ToggleColorMode";
+import { fetchToken } from "../../utils";
+import {
+  searchMovie,
+  selectGenreOrCategory,
+} from "../../features/currentGenreOrCategory";
 
 const useAlan = () => {
   const navigate = useNavigate();
@@ -12,43 +15,47 @@ const useAlan = () => {
   const { setMode } = useContext(ColorModeContext);
   useEffect(() => {
     alanBtn({
-      key: '974534b685a56e731184599c7d0071a02e956eca572e1d8b807a3e2338fdd0dc/stage',
+      key: "974534b685a56e731184599c7d0071a02e956eca572e1d8b807a3e2338fdd0dc/stage",
       onCommand: ({ command, mode, genres, genreOrCategory, query }) => {
         switch (command) {
-          case 'changeMode':
-            if (mode === 'light') {
-              console.log(command, mode);
-              setMode('light');
+          case "changeMode":
+            if (mode === "light") {
+              setMode("light");
             } else {
-              setMode('dark');
+              setMode("dark");
             }
             break;
-          case 'login':
+          case "login":
             fetchToken();
             break;
-          case 'logout':
+          case "logout":
             localStorage.clear();
-            window.location.href = '/';
+            window.location.href = "/";
             break;
-          case 'chooseGenre': {
-            console.log('choose genre');
-            const foundGenre = genres.find((g) => g.name.toLowerCase() === genreOrCategory.toLowerCase());
+          case "chooseGenre": {
+            const foundGenre = genres.find(
+              (g) => g.name.toLowerCase() === genreOrCategory.toLowerCase(),
+            );
 
             if (foundGenre) {
-              navigate('/');
+              navigate("/");
               dispatch(selectGenreOrCategory(foundGenre.id));
             } else {
-              const category = genreOrCategory.startsWith('top') ? 'top_rated' : genreOrCategory;
-              navigate('/');
+              const category = genreOrCategory.startsWith("top")
+                ? "top_rated"
+                : genreOrCategory;
+              navigate("/");
               dispatch(selectGenreOrCategory(category));
             }
             break;
           }
-          case 'search':
+          case "search":
             dispatch(searchMovie(query));
-          default:
             break;
+          default:
+            return "";
         }
+        return null;
       },
     });
   }, []);

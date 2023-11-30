@@ -1,18 +1,18 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const genreOrCategory = createSlice({
-  name: 'genreOrCategory',
+  name: "genreOrCategory",
   initialState: {
-    genreIdOrCategoryName: '',
+    genreIdOrCategoryName: "",
     // TODO: do we really need this page here?
     page: 1,
-    searchQuery: '',
+    searchQuery: "",
   },
   reducers: {
     selectGenreOrCategory(state, action) {
       state.genreIdOrCategoryName = action.payload;
-      state.searchQuery = '';
+      state.searchQuery = "";
     },
     searchMovie(state, action) {
       state.searchQuery = action.payload;

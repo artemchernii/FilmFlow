@@ -1,18 +1,18 @@
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from "@mui/styles";
 
 export default makeStyles(() => ({
   root: {
-    display: 'flex',
-    height: '100%',
+    display: "flex",
+    height: "100%",
     // backgroundColor: '#FFDEE9',
     // backgroundImage: 'linear-gradient(333deg, #FFDEE9 0%, #B5FFFC 100%)',
   },
   toolbar: {
-    height: '80px',
+    height: "80px",
   },
   content: {
-    flexGrow: '1',
-    width: '100%',
-    padding: '2em',
+    flexGrow: "1",
+    width: "100%",
+    padding: "2em",
   },
 }));

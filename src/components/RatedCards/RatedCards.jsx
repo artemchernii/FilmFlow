@@ -1,11 +1,10 @@
-import React from 'react';
-import { Typography, Box } from '@mui/material';
-import useStyles from './styles';
-import Movie from '../Movie/Movie';
+import React from "react";
+import { Typography, Box } from "@mui/material";
+import useStyles from "./styles";
+import Movie from "../Movie/Movie";
 
 const RatedCards = ({ title, movies }) => {
   const classes = useStyles();
-  console.log(movies);
 
   return (
     <Box>
@@ -18,7 +17,9 @@ const RatedCards = ({ title, movies }) => {
         flexWrap="wrap"
         className={classes.container}
       >
-        {movies && movies.length > 0 ? movies.map((movie, i) => <Movie key={i} movie={movie} index={i} />) : null}
+        {movies && movies.length > 0
+          ? movies.map((movie, i) => <Movie key={i} movie={movie} index={i} />)
+          : null}
       </Box>
     </Box>
   );
