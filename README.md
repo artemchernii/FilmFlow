@@ -38,6 +38,13 @@ FilmFlow is a side project that I developed during my JSMastery course, aimed at
 - **Husky and Git Hooks:** Maintained code quality through pre-commit and pre-push Git hooks using Husky, enforcing best practices and automated checks.
 - **Continuous Integration (CI):** Integrated CI to automate testing processes and maintain code integrity.
 
+## Additional Features
+
+- **TMDb API Integration:** FilmFlow integrates with [The Movie Database (TMDb) API](https://www.themoviedb.org/documentation/api) to fetch comprehensive movie data, including details, images, and user ratings.
+
+- **TMDb Authentication:** Secure and personalized user experiences are enabled through TMDb login authentication. Users can enjoy features like saving favorites and managing watchlists.
+
+
 ## Project Structure
 
 The project is organized with a focus on modularity and maintainability. Here's a brief overview of the key directories:
