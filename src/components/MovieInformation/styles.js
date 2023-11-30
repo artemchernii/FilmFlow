@@ -39,7 +39,7 @@ export default makeStyles((theme) => ({
     flexWrap: "wrap",
   },
   genreImage: {
-    color: theme.palette.mode === "dark" && "invert(0)",
+    filter: theme.palette.mode === "light" ? "dark" : "invert(1)",
     marginRight: "10px",
   },
   links: {

@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Helmet } from "react-helmet";
 import { useGetMoviesQuery } from "../../services/TMDB";
 import MovieList from "../MovieList/MovieList";
 import Pagination from "../Pagination/Pagination";
@@ -59,6 +60,9 @@ const Movies = () => {
   }
   return (
     <>
+      <Helmet>
+        <title>FrameFlow - Your Personal Movie Universe, One Click Away</title>
+      </Helmet>
       <FeaturedMovie movie={movies?.results[0]} />
       <MovieList movies={movies} numberOfMovies={numberOfMovies} excludeFirst />
       <Pagination

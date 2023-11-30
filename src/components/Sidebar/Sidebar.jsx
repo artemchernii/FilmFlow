@@ -10,17 +10,12 @@ import {
   ListItemButton,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useTheme } from "@mui/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetGenresQuery } from "../../services/TMDB";
 import useClasses from "./styles";
 import genresIcons from "../../assets/genres";
 import { selectGenreOrCategory } from "../../features/currentGenreOrCategory";
-
-const blueLogo =
-  "https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png";
-const redLogo =
-  "https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png";
+import darkLogo from "../../assets/icons/FrameFlowLogo.svg";
 
 const categories = [
   { label: "Popular", value: "popular" },
@@ -29,7 +24,6 @@ const categories = [
 ];
 
 const Sidebar = ({ setMobileOpen }) => {
-  const theme = useTheme();
   const classes = useClasses();
   const { data, isFetching } = useGetGenresQuery();
 
@@ -46,11 +40,7 @@ const Sidebar = ({ setMobileOpen }) => {
   return (
     <>
       <Link to="/" className={classes.imageLink}>
-        <img
-          className={classes.image}
-          src={theme.palette.mode === "light" ? blueLogo : redLogo}
-          alt="Filmpire logo"
-        />
+        <img className={classes.image} src={darkLogo} alt="Filmpire logo" />
       </Link>
       <Divider />
       <List>
