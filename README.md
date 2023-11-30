@@ -1,72 +1,61 @@
-# Filmpire created with Create React App
+# 🍿 FrameFlow - Your Personal Movie Universe, One Click Away
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## FilmFlare is your ultimate destination for movie enthusiasts and cinephiles alike. Dive into a vast galaxy of cinematic wonders where you can explore, discover, and curate your personalized movie experience effortlessly.
 
-<b>Use NVM USE 16 before installation</b>
+🍿 Overview:
+Browse through an extensive collection of movies spanning various genres, from timeless classics to the latest releases. Immerse yourself in the world of cinema with detailed movie information, captivating visuals, and insightful reviews, all in one place.
 
-## Available Scripts
+⭐ Save to Favs:
+Easily bookmark your favorite movies with a single click. Build your own curated list of must-watch films, creating a personalized library that reflects your cinematic tastes. Rediscover beloved classics or keep track of the latest releases that catch your eye.
 
-In the project directory, you can run:
+📋 Watchlist:
+Never miss a movie again! Maintain a dynamic watchlist that adapts to your evolving interests. Add films you're excited about, and let FilmFlare be your guide, reminding you of upcoming releases and hidden gems you can't afford to overlook.
 
-### `npm start`
+🔍 Intelligent Recommendations:
+Discover new favorites effortlessly with our smart recommendation engine. Tailored suggestions based on your viewing history and preferences ensure that every movie you explore has the potential to become a cherished addition to your collection.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Project Screen Shot(s)
 
-### `npm test`
+#### Example:   
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[ PRETEND SCREEN SHOT IS HERE ]
 
-### `npm run build`
+[ PRETEND OTHER SCREEN SHOT IS HERE ]
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# FilmFlow
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+FilmFlow is a side project that I developed during my JSMastery course, aimed at honing my skills in modern web development. This project served as a practical playground for exploring and implementing various technologies and best practices.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technologies Used
 
-### `npm run eject`
+- **React:** Leveraged the power of React for building a dynamic and responsive user interface.
+- **Redux and RTK Query:** Implemented Redux for state management and used RTK Query for efficient API integration, simplifying data fetching and updates.
+- **Create React App:** Initiated the project with Create React App for a quick and scalable setup.
+- **Material UI:** Designed a visually appealing and user-friendly interface using Material UI components.
+- **Axios:** Utilized Axios for handling HTTP requests, ensuring seamless communication between the frontend and backend.
+- **Jest and React Testing Library:** Practiced test-driven development by writing unit tests with Jest and React Testing Library to ensure code reliability.
+- **Husky and Git Hooks:** Maintained code quality through pre-commit and pre-push Git hooks using Husky, enforcing best practices and automated checks.
+- **Continuous Integration (CI):** Integrated CI to automate testing processes and maintain code integrity.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Project Structure
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The project is organized with a focus on modularity and maintainability. Here's a brief overview of the key directories:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **src/components:** Contains reusable React components for building the UI.
+- **src/features:** Organizes Redux slices and associated logic for different features.
+- **src/services:** Manages API services and data fetching using Axios.
+- **src/tests:** Hosts unit tests to ensure the reliability of the codebase.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Getting Started
 
-## Learn More
+Follow these steps to set up the project locally:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Clone the repository: `git clone https://github.com/artemchernii/FilmFlow.git`
+2. Navigate to the project directory: `cd FilmFlow`
+3. Install dependencies: `npm install`
+4. Start the development server: `npm start`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Feel free to explore the code, contribute, or use FilmFlow as a reference for your own projects. Happy coding!
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

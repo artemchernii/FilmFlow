@@ -4,7 +4,10 @@ module.exports = {
     es2021: true,
     jest: true,
   },
-  extends: 'airbnb',
+  plugins: [
+    'react',
+  ],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'airbnb'],
   overrides: [
     {
       env: {
@@ -12,15 +15,20 @@ module.exports = {
       },
       files: [
         '.eslintrc.{js,cjs}',
+        '*.jsx',
       ],
       parserOptions: {
-        sourceType: 'script',
+        sourceType: 'module',
       },
     },
   ],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
+    allowImportExportEverywhere: true,
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   rules: {
     'react/react-in-jsx-scope': 0,
