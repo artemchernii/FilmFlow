@@ -1,0 +1,35 @@
+name: CI
+
+on:
+    push:
+        branches:
+          - master
+    pull_request:
+
+jobs:
+  test_pull_request:
+    name: Test on pull request
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo's default branch
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+            node-version: '16.x'
+      # The `run` keyword tells the job to execute a command on the runner. In this case, the `npm ci` and `npm run build` commands are run as separate steps to install and build the Node.js application in the repository.
+      - name: Run the "npm ci" command
+        run: |
+            if [ -e yarn.lock ]; then
+                yarn install --frozen-lockfile
+            elif [ -e package-lock.json ]; then
+                npm ci
+            else
+                npm i
+            fi
+      - name: Run lint
+        run: npm run lint
+      - name: Run the "npm run test" command
+        run: npm run test
+        env:
+            SKIP_PREFLIGHT_CHECK: true
