@@ -8,13 +8,14 @@ import ToggleColorModeProvider from "./utils/ToggleColorMode";
 import App from "./components/App";
 import "./index.css";
 
+// TODO:
+// Have 404 error page
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <ToggleColorModeProvider>
       <BrowserRouter>
         <App />
-        <h1>TEST!!!!</h1>
       </BrowserRouter>
     </ToggleColorModeProvider>
     ,

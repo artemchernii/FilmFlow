@@ -9,6 +9,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
+import { Helmet } from "react-helmet";
 import useStyles from "./styles";
 import {
   useGetActorInformationQuery,
@@ -77,6 +78,10 @@ const Actors = () => {
         lg={7}
         padding="0 2rem"
       >
+        <Helmet>
+          <title>{actor?.name}</title>
+          <meta name="description" content={actor?.biography} />
+        </Helmet>
         <Typography variant="h3" align="center" gutterBottom>
           {actor?.name}
         </Typography>

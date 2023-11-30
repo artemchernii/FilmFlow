@@ -4,10 +4,11 @@ export default makeStyles((theme) => ({
   imageLink: {
     display: "flex",
     justifyContent: "center",
-    padding: "10% 0",
+    padding: "0.2% 0",
   },
   image: {
-    width: "70%",
+    width: "100%",
+    filter: theme.palette.mode === "light" ? "dark" : "invert(1)",
   },
   links: {
     color: theme.palette.text.primary,

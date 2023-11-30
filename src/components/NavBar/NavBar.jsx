@@ -8,12 +8,7 @@ import {
   Avatar,
   useMediaQuery,
 } from "@mui/material";
-import {
-  Menu,
-  AccountCircle,
-  Brightness4,
-  Brightness7,
-} from "@mui/icons-material";
+import { Menu, AccountCircle, DarkMode, LightMode } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -78,7 +73,7 @@ const NavBar = () => {
             sx={{ ml: 1 }}
             onClick={() => toggleColorMode()}
           >
-            {theme.palette.mode === "dark" ? <Brightness7 /> : <Brightness4 />}
+            {theme.palette.mode === "dark" ? <LightMode /> : <DarkMode />}
           </IconButton>
           {!isMobile && <Search />}
           <div>
