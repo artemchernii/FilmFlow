@@ -1,6 +1,6 @@
-import React from 'react';
-import { Typography, Button } from '@mui/material';
-import useStyles from './styles';
+import React from "react";
+import { Typography, Button } from "@mui/material";
+import useStyles from "./styles";
 
 const Pagination = ({ currentPage, setPage, totalPages }) => {
   const classes = useStyles();
@@ -20,9 +20,12 @@ const Pagination = ({ currentPage, setPage, totalPages }) => {
         color="primary"
         type="button"
         disabled={currentPage === 1}
-      >Prev
+      >
+        Prev
       </Button>
-      <Typography variant="h5" className={classes.pageNumber}>{currentPage} / {totalPages}</Typography>
+      <Typography variant="h5" className={classes.pageNumber}>
+        {currentPage} / {totalPages}
+      </Typography>
       <Button
         onClick={handleNext}
         className={classes.button}
@@ -30,7 +33,8 @@ const Pagination = ({ currentPage, setPage, totalPages }) => {
         color="primary"
         type="button"
         disabled={currentPage === totalPages}
-      >Next
+      >
+        Next
       </Button>
     </div>
   );

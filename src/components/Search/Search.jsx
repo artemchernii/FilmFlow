@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import { TextField, InputAdornment } from '@mui/material';
-import { Search as SearchIcon } from '@mui/icons-material';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
-import useStyles from './styles';
-import { searchMovie } from '../../features/currentGenreOrCategory';
+import React, { useState } from "react";
+import { TextField, InputAdornment } from "@mui/material";
+import { Search as SearchIcon } from "@mui/icons-material";
+import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
+import useStyles from "./styles";
+import { searchMovie } from "../../features/currentGenreOrCategory";
 
 const Search = () => {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const classes = useStyles();
   const dispatch = useDispatch();
   const location = useLocation();
 
   const handleKeyUp = ({ key }) => {
-    if (key === 'Enter') {
+    if (key === "Enter") {
       dispatch(searchMovie(query));
     }
   };
-  if (location.pathname !== '/') {
+  if (location.pathname !== "/") {
     return null;
   }
 

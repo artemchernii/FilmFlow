@@ -1,7 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { tmdbApi } from '../services/TMDB';
-import { genreOrCategoryReducer } from '../features/currentGenreOrCategory';
-import { authSliceReducer } from '../features/auth';
+import { configureStore } from "@reduxjs/toolkit";
+import { tmdbApi } from "../services/TMDB";
+import { genreOrCategoryReducer } from "../features/currentGenreOrCategory";
+import { authSliceReducer } from "../features/auth";
 
 export default configureStore({
   reducer: {
@@ -9,5 +9,6 @@ export default configureStore({
     currentGenreOrCategory: genreOrCategoryReducer,
     user: authSliceReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(tmdbApi.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(tmdbApi.middleware),
 });

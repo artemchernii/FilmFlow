@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import {
   Typography,
   Button,
@@ -7,27 +7,41 @@ import {
   Grid,
   Box,
   CircularProgress,
-} from '@mui/material';
-import { ArrowBack } from '@mui/icons-material';
-import useStyles from './styles';
-import { useGetActorInformationQuery, useGetMoviesByActorIdQuery } from '../../services/TMDB';
-import MovieList from '../MovieList/MovieList';
-import Pagination from '../Pagination/Pagination';
+} from "@mui/material";
+import { ArrowBack } from "@mui/icons-material";
+import useStyles from "./styles";
+import {
+  useGetActorInformationQuery,
+  useGetMoviesByActorIdQuery,
+} from "../../services/TMDB";
+import MovieList from "../MovieList/MovieList";
+import Pagination from "../Pagination/Pagination";
 
-const GENDERS = ['Not set / not specified', 'Female', 'Male', 'Non-binary'];
+const GENDERS = ["Not set / not specified", "Female", "Male", "Non-binary"];
 
 const Actors = () => {
   const { id } = useParams();
   const classes = useStyles();
   const [page, setPage] = useState(1);
   const {
-    data: actor, isFetching, isError } = useGetActorInformationQuery({ id });
+    data: actor,
+    isFetching,
+    isError,
+  } = useGetActorInformationQuery({ id });
   const {
-    data: relatedMovies, isFetching: isFetchingRelatedMovies, isError: isErrorRelatedMovies } = useGetMoviesByActorIdQuery({ id, page });
+    data: relatedMovies,
+    isFetching: isFetchingRelatedMovies,
+    isError: isErrorRelatedMovies,
+  } = useGetMoviesByActorIdQuery({ id, page });
 
   if (isFetching) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" height="50dvh">
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="50dvh"
+      >
         <CircularProgress size="6rem" />
       </Box>
     );
@@ -41,31 +55,49 @@ const Actors = () => {
   }
   return (
     <Grid container className={classes.containerSpaceAround}>
-      <Grid item display="flex" justifyContent="center" marginTop="1rem" sm={12} lg={4}>
+      <Grid
+        item
+        display="flex"
+        justifyContent="center"
+        marginTop="1rem"
+        sm={12}
+        lg={4}
+      >
         <img
           className={classes.poster}
           src={`http://image.tmdb.org/t/p/w500/${actor?.profile_path}`}
           alt={actor?.name}
         />
       </Grid>
-      <Grid item container direction="column" marginTop="2rem" lg={7} padding="0 2rem">
-        <Typography
-          variant="h3"
-          align="center"
-          gutterBottom
-        >{actor?.name}
+      <Grid
+        item
+        container
+        direction="column"
+        marginTop="2rem"
+        lg={7}
+        padding="0 2rem"
+      >
+        <Typography variant="h3" align="center" gutterBottom>
+          {actor?.name}
+        </Typography>
+        <Typography variant="h5" align="center" gutterBottom>
+          Born: {new Date(actor?.birthday).toDateString()} | Gender{" "}
+          {actor?.gender && GENDERS[actor?.gender]}
         </Typography>
         <Typography
-          variant="h5"
-          align="center"
+          variant="body1"
           gutterBottom
-        >Born: {new Date(actor?.birthday).toDateString()} | Gender {actor?.gender && GENDERS[actor?.gender] }
-        </Typography>
-        <Typography variant="body1" gutterBottom style={{ marginTop: '10px' }} paragraph>
+          style={{ marginTop: "10px" }}
+          paragraph
+        >
           {actor?.biography && actor?.biography}
         </Typography>
-        <Grid item container style={{ marginTop: '2rem' }}>
-          <ButtonGroup size="medium" variant="outlined" className={classes.buttonsContainer}>
+        <Grid item container style={{ marginTop: "2rem" }}>
+          <ButtonGroup
+            size="medium"
+            variant="outlined"
+            className={classes.buttonsContainer}
+          >
             <Button
               target="_blank"
               rel="noopener noreferrer"
@@ -79,7 +111,7 @@ const Actors = () => {
               component={Link}
               to="/"
               endIcon={<ArrowBack />}
-              sx={{ borderColor: 'primary.main' }}
+              sx={{ borderColor: "primary.main" }}
             >
               <Typography color="inherit" variant="subtitle1">
                 Back
@@ -92,23 +124,21 @@ const Actors = () => {
         <Typography variant="h3" align="center" gutterBottom>
           You might also like
         </Typography>
-        {relatedMovies && !isFetchingRelatedMovies
-          ? (
-            <div>
-              <MovieList movies={relatedMovies} numberOfMovies={12} />
-              <Pagination currentPage={page} setPage={setPage} totalPages={relatedMovies.total_pages} />
-            </div>
-          )
-          : (
-            <Box>
-              Sorry, nothing was found.
-            </Box>
-          )}
+        {relatedMovies && !isFetchingRelatedMovies ? (
+          <div>
+            <MovieList movies={relatedMovies} numberOfMovies={12} />
+            <Pagination
+              currentPage={page}
+              setPage={setPage}
+              totalPages={relatedMovies.total_pages}
+            />
+          </div>
+        ) : (
+          <Box>Sorry, nothing was found.</Box>
+        )}
         {isErrorRelatedMovies ? <Box>Something went wrong</Box> : null}
-
       </Box>
     </Grid>
   );
 };
 export default Actors;
-

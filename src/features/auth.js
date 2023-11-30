@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: {},
@@ -8,19 +8,19 @@ const initialState = {
 };
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     setUser(state, action) {
       state.user = action.payload;
       state.isAuthenticated = true;
-      state.sessionId = localStorage.getItem('session_id');
+      state.sessionId = localStorage.getItem("session_id");
 
-      localStorage.setItem('account_id', action.payload.id);
+      localStorage.setItem("account_id", action.payload.id);
     },
     logout(state) {
       state.isAuthenticated = false;
-      state.sessionId = '';
+      state.sessionId = "";
       state.user = {};
     },
   },
