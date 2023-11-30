@@ -19,7 +19,14 @@ jobs:
             node-version: '16.x'
       # The `run` keyword tells the job to execute a command on the runner. In this case, the `npm ci` and `npm run build` commands are run as separate steps to install and build the Node.js application in the repository.
       - name: Run the "npm ci" command
-        run: npm ci
+        run: |
+            if [ -e yarn.lock ]; then
+                yarn install --frozen-lockfile
+            elif [ -e package-lock.json ]; then
+                npm ci
+            else
+                npm i
+            fi
       - name: Run lint
         run: npm run lint
       - name: Run the "npm run test" command
