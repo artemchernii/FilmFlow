@@ -13,6 +13,7 @@ export default makeStyles((theme) => ({
   links: {
     color: theme.palette.text.primary,
     textDecoration: "none",
+    background: "#121212",
   },
   genreImage: {
     filter: theme.palette.mode === "light" ? "dark" : "invert(1)",

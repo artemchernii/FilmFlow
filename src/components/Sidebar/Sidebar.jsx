@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Divider,
   List,
@@ -27,6 +27,7 @@ const categories = [
 const Sidebar = ({ setMobileOpen }) => {
   const classes = useClasses();
   const { data, isFetching } = useGetGenresQuery();
+  const [selected, setSelected] = useState("popular");
 
   const dispatch = useDispatch();
 
@@ -38,8 +39,13 @@ const Sidebar = ({ setMobileOpen }) => {
     setMobileOpen();
   }, [genreIdOrCategoryName]);
 
+  const handleSelectGenreOrCategory = (value) => {
+    setSelected(value);
+    dispatch(selectGenreOrCategory(value));
+  };
+
   return (
-    <>
+    <Box sx={{ borderLeft: "0.5px solid rgba(255,255,255, 0.1)" }}>
       <Link to="/" className={classes.imageLink}>
         <img className={classes.image} src={darkLogo} alt="Filmpire logo" />
       </Link>
@@ -49,7 +55,8 @@ const Sidebar = ({ setMobileOpen }) => {
         {categories.map(({ label, value }) => (
           <Link key={value} className={classes.links} to="/">
             <ListItemButton
-              onClick={() => dispatch(selectGenreOrCategory(value))}
+              selected={selected === value}
+              onClick={() => handleSelectGenreOrCategory(value)}
             >
               <ListItemIcon>
                 <img
@@ -82,7 +89,8 @@ const Sidebar = ({ setMobileOpen }) => {
           data.genres.map(({ id, name }) => (
             <Link key={id} className={classes.links} to="/">
               <ListItemButton
-                onClick={() => dispatch(selectGenreOrCategory(id))}
+                onClick={() => handleSelectGenreOrCategory(id)}
+                selected={selected === id}
               >
                 <ListItemIcon>
                   <img
@@ -105,7 +113,7 @@ const Sidebar = ({ setMobileOpen }) => {
           ))
         )}
       </List>
-    </>
+    </Box>
   );
 };
 
