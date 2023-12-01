@@ -8,6 +8,7 @@ import {
   Box,
   CircularProgress,
   ListItemButton,
+  Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -58,7 +59,14 @@ const Sidebar = ({ setMobileOpen }) => {
                   height={30}
                 />
               </ListItemIcon>
-              <ListItemText primary={label} />
+              <ListItemText
+                disableTypography
+                primary={
+                  <Typography variant="body2" style={{ fontWeight: "bold" }}>
+                    {label}
+                  </Typography>
+                }
+              />
             </ListItemButton>
           </Link>
         ))}
@@ -84,7 +92,14 @@ const Sidebar = ({ setMobileOpen }) => {
                     height={30}
                   />
                 </ListItemIcon>
-                <ListItemText primary={name} />
+                <ListItemText
+                  disableTypography
+                  primary={
+                    <Typography variant="body2" style={{ fontWeight: "bold" }}>
+                      {name}
+                    </Typography>
+                  }
+                />
               </ListItemButton>
             </Link>
           ))

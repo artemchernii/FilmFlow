@@ -4,6 +4,7 @@ export default makeStyles(() => ({
   root: {
     display: "flex",
     height: "100%",
+
     // backgroundColor: '#FFDEE9',
     // backgroundImage: 'linear-gradient(333deg, #FFDEE9 0%, #B5FFFC 100%)',
   },
