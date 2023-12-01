@@ -12,9 +12,14 @@ const ToggleColorMode = ({ children }) => {
         palette: {
           mode,
         },
+        typography: {
+          fontFamily: "Inter, sans-serif",
+        },
       }),
     [mode],
   );
+
+  console.log("theme", theme);
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === "light" ? "dark" : "light"));

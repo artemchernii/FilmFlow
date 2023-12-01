@@ -10,13 +10,14 @@ import {
 } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 import { Helmet } from "react-helmet";
+import Pagination from "@mui/material/Pagination";
+
 import useStyles from "./styles";
 import {
   useGetActorInformationQuery,
   useGetMoviesByActorIdQuery,
 } from "../../services/TMDB";
 import MovieList from "../MovieList/MovieList";
-import Pagination from "../Pagination/Pagination";
 
 const GENDERS = ["Not set / not specified", "Female", "Male", "Non-binary"];
 
@@ -34,6 +35,9 @@ const Actors = () => {
     isFetching: isFetchingRelatedMovies,
     isError: isErrorRelatedMovies,
   } = useGetMoviesByActorIdQuery({ id, page });
+  const handleChangePage = (event, step) => {
+    setPage(step);
+  };
 
   if (isFetching) {
     return (
@@ -132,11 +136,13 @@ const Actors = () => {
         {relatedMovies && !isFetchingRelatedMovies ? (
           <div>
             <MovieList movies={relatedMovies} numberOfMovies={12} />
-            <Pagination
-              currentPage={page}
-              setPage={setPage}
-              totalPages={relatedMovies.total_pages}
-            />
+            <Box display="flex" justifyContent="center">
+              <Pagination
+                page={page}
+                onChange={handleChangePage}
+                count={relatedMovies.total_pages}
+              />
+            </Box>
           </div>
         ) : (
           <Box>Sorry, nothing was found.</Box>

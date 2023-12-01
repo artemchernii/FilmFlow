@@ -27,7 +27,6 @@ const Profile = () => {
       sessionId: localStorage.getItem("session_id"),
     });
   const dispatch = useDispatch();
-
   useEffect(() => {
     favoriteMoviesRefetch();
     watchlistMoviesRefetch();

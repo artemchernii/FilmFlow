@@ -8,9 +8,9 @@ import {
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
+import Pagination from "@mui/material/Pagination";
 import { useGetMoviesQuery } from "../../services/TMDB";
 import MovieList from "../MovieList/MovieList";
-import Pagination from "../Pagination/Pagination";
 import FeaturedMovie from "../FeaturedMovie/FeaturedMovie";
 
 const Movies = () => {
@@ -22,6 +22,7 @@ const Movies = () => {
   const {
     data: movies,
     isLoading,
+    isFetching,
     isError,
     error,
   } = useGetMoviesQuery({ genreIdOrCategoryName, page, searchQuery });
@@ -32,7 +33,11 @@ const Movies = () => {
     window.history.replaceState(null, "Movies", "/");
   }
 
-  if (isLoading) {
+  const handleChangePage = (event, step) => {
+    setPage(step);
+  };
+
+  if (isLoading || isFetching) {
     return (
       <Box
         display="flex"
@@ -65,11 +70,13 @@ const Movies = () => {
       </Helmet>
       <FeaturedMovie movie={movies?.results[0]} />
       <MovieList movies={movies} numberOfMovies={numberOfMovies} excludeFirst />
-      <Pagination
-        currentPage={page}
-        setPage={setPage}
-        totalPages={movies.total_pages}
-      />
+      <Box display="flex" justifyContent="center">
+        <Pagination
+          page={page}
+          onChange={handleChangePage}
+          count={movies.total_pages}
+        />
+      </Box>
     </>
   );
 };
