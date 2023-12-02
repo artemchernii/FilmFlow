@@ -284,11 +284,14 @@ const MovieInformation = () => {
         </Grid>
       </Grid>
       {/* Recommendation */}
-      <Box marginTop="5rem" width="100%">
-        <Typography variant="h3" alignt="center" gutterBottom>
-          You might also like
-        </Typography>
-        {recommendations && !isFetchingRecommendation ? (
+
+      {recommendations &&
+      recommendations?.results.length > 0 &&
+      !isFetchingRecommendation ? (
+        <Box marginTop="5rem" width="100%">
+          <Typography variant="h3" alignt="center" gutterBottom>
+            You might also like
+          </Typography>
           <Box>
             <MovieList movies={recommendations} numberOfMovies={12} />
             <Box display="flex" justifyContent="center">
@@ -299,11 +302,16 @@ const MovieInformation = () => {
               />
             </Box>
           </Box>
-        ) : (
-          <Box>Sorry, nothing was found.</Box>
-        )}
-        {isErrorRecommendation ? <Box>Something went wrong</Box> : null}
-      </Box>
+        </Box>
+      ) : (
+        <Box marginTop="2rem">
+          <Typography variant="h5" alignt="center" gutterBottom>
+            Sorry, nothing to recommend.
+          </Typography>
+        </Box>
+      )}
+      {isErrorRecommendation ? <Box>Something went wrong</Box> : null}
+
       {/* Modal */}
       <Modal
         closeAfterTransition
@@ -319,7 +327,11 @@ const MovieInformation = () => {
             src={`https://www.youtube.com/embed/${movie.videos.results[0].key}`}
             allow="autoplay"
           />
-        ) : null}
+        ) : (
+          <Box>
+            <Typography variant="body1">Trailers not found</Typography>
+          </Box>
+        )}
       </Modal>
     </Grid>
   );
