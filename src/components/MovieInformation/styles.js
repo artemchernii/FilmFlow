@@ -12,11 +12,15 @@ export default makeStyles((theme) => ({
   },
   poster: {
     borderRadius: "20px",
-    boxShadow: "0.5em 0.5em 1em rgb(64,64,64)",
+    boxShadow:
+      theme.palette.mode === "light"
+        ? "0.1em 0.2em 0.3em rgb(64,64,64)"
+        : "none",
     width: "100%",
     height: "max-content",
     marginTop: "20px",
     marginBottom: "10px",
+    filter: "none",
 
     [theme.breakpoints.down("md")]: {
       margin: "0 auto",
@@ -66,6 +70,16 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.down("md")]: {
       flexDirection: "column !important",
     },
+  },
+  buttonLink: {
+    color:
+      theme.palette.mode === "light"
+        ? `#0f0e17 !important`
+        : "#a7a9be !important",
+    borderColor:
+      theme.palette.mode === "light"
+        ? `#0f0e17 !important`
+        : "#a7a9be !important",
   },
   modal: {
     display: "flex",

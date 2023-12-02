@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import {
-  Typography,
-  Button,
-  ButtonGroup,
-  Grid,
-  Box,
-  CircularProgress,
-} from "@mui/material";
+import { Typography, Button, ButtonGroup, Grid, Box } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 import { Helmet } from "react-helmet";
 import Pagination from "@mui/material/Pagination";
@@ -18,8 +11,7 @@ import {
   useGetMoviesByActorIdQuery,
 } from "../../services/TMDB";
 import MovieList from "../MovieList/MovieList";
-
-const GENDERS = ["Not set / not specified", "Female", "Male", "Non-binary"];
+import Spinner from "../../utils/UI/Spinner";
 
 const Actors = () => {
   const { id } = useParams();
@@ -38,18 +30,10 @@ const Actors = () => {
   const handleChangePage = (event, step) => {
     setPage(step);
   };
+  console.log(relatedMovies);
 
   if (isFetching) {
-    return (
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="50dvh"
-      >
-        <CircularProgress size="6rem" />
-      </Box>
-    );
+    return <Spinner marginTop="1rem" />;
   }
   if (isError) {
     return (
@@ -86,13 +70,17 @@ const Actors = () => {
           <title>{actor?.name}</title>
           <meta name="description" content={actor?.biography} />
         </Helmet>
-        <Typography variant="h3" align="center" gutterBottom>
+        <Typography variant="h3" align="center" fontWeight="bold" gutterBottom>
           {actor?.name}
         </Typography>
-        <Typography variant="h5" align="center" gutterBottom>
-          Born: {new Date(actor?.birthday).toDateString()} | Gender{" "}
-          {actor?.gender && GENDERS[actor?.gender]}
-        </Typography>
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Typography variant="subtitle1" align="center" gutterBottom>
+            Born: {new Date(actor?.birthday).toDateString()}
+          </Typography>
+          <Typography variant="subtitle1">
+            {actor?.place_of_birth ? actor?.place_of_birth : null}
+          </Typography>
+        </Box>
         <Typography
           variant="body1"
           gutterBottom
@@ -111,8 +99,7 @@ const Actors = () => {
               target="_blank"
               rel="noopener noreferrer"
               href={`https://www.imdb.com/name/${actor?.imdb_id}`}
-              variant="contained"
-              color="primary"
+              className={classes.backButton}
             >
               IMDB
             </Button>
@@ -120,28 +107,33 @@ const Actors = () => {
               component={Link}
               to="/"
               endIcon={<ArrowBack />}
-              sx={{ borderColor: "primary.main" }}
+              className={classes.backButton}
             >
-              <Typography color="inherit" variant="subtitle1">
-                Back
-              </Typography>
+              Back
             </Button>
           </ButtonGroup>
         </Grid>
       </Grid>
       <Box marginTop="5rem" width="100%">
-        <Typography variant="h3" align="center" gutterBottom>
-          You might also like
+        <Typography
+          variant="h3"
+          sx={{ fontSize: "2rem" }}
+          align="center"
+          gutterBottom
+        >
+          Explore movies starring {actor.name}
         </Typography>
         {relatedMovies && !isFetchingRelatedMovies ? (
           <div>
             <MovieList movies={relatedMovies} numberOfMovies={12} />
             <Box display="flex" justifyContent="center">
-              <Pagination
-                page={page}
-                onChange={handleChangePage}
-                count={relatedMovies.total_pages}
-              />
+              {relatedMovies?.total_pages > 1 ? (
+                <Pagination
+                  page={page}
+                  onChange={handleChangePage}
+                  count={relatedMovies.total_pages}
+                />
+              ) : null}
             </Box>
           </div>
         ) : (

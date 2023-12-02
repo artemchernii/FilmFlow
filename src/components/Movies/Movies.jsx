@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  Box,
-  CircularProgress,
-  useMediaQuery,
-  Typography,
-} from "@mui/material";
+import { Box, useMediaQuery, Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
@@ -12,6 +7,7 @@ import Pagination from "@mui/material/Pagination";
 import { useGetMoviesQuery } from "../../services/TMDB";
 import MovieList from "../MovieList/MovieList";
 import FeaturedMovie from "../FeaturedMovie/FeaturedMovie";
+import Spinner from "../../utils/UI/Spinner";
 
 const Movies = () => {
   const location = useLocation();
@@ -38,16 +34,7 @@ const Movies = () => {
   };
 
   if (isLoading || isFetching) {
-    return (
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="50dvh"
-      >
-        <CircularProgress />
-      </Box>
-    );
+    return <Spinner height="50dvh" />;
   }
 
   if (!movies.results.length) {

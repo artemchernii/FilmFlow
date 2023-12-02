@@ -6,7 +6,6 @@ import {
   ListSubheader,
   ListItemIcon,
   Box,
-  CircularProgress,
   ListItemButton,
   Typography,
 } from "@mui/material";
@@ -17,6 +16,7 @@ import useClasses from "./styles";
 import genresIcons from "../../assets/genres";
 import { selectGenreOrCategory } from "../../features/currentGenreOrCategory";
 import darkLogo from "../../assets/icons/FrameFlowLogo.svg";
+import Spinner from "../../utils/UI/Spinner";
 
 const categories = [
   { label: "Popular", value: "popular" },
@@ -82,9 +82,7 @@ const Sidebar = ({ setMobileOpen }) => {
       <List>
         <ListSubheader>Categories</ListSubheader>
         {isFetching ? (
-          <Box display="flex" justifyContent="center">
-            <CircularProgress />
-          </Box>
+          <Spinner />
         ) : (
           data.genres.map(({ id, name }) => (
             <Link key={id} className={classes.links} to="/">

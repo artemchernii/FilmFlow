@@ -9,7 +9,6 @@ import {
   ButtonGroup,
   Grid,
   Box,
-  CircularProgress,
   Rating,
 } from "@mui/material";
 import {
@@ -33,6 +32,7 @@ import genresIcons from "../../assets/genres";
 import { selectGenreOrCategory } from "../../features/currentGenreOrCategory";
 import MovieList from "../MovieList/MovieList";
 import { userSelector } from "../../features/auth";
+import Spinner from "../../utils/UI/Spinner";
 
 const MovieInformation = () => {
   const classes = useStyles();
@@ -63,6 +63,7 @@ const MovieInformation = () => {
 
   const [isMovieFavored, setIsMovieFavored] = useState(false);
   const [isMovieWatchlisted, setIsMovieWatchlisted] = useState(false);
+  console.log({ movie });
 
   useEffect(() => {
     setIsMovieFavored(
@@ -118,16 +119,7 @@ const MovieInformation = () => {
   };
 
   if (isFetching) {
-    return (
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="50dvh"
-      >
-        <CircularProgress size="6rem" />
-      </Box>
-    );
+    return <Spinner size="6rem" />;
   }
   if (isError) {
     return (
@@ -230,6 +222,7 @@ const MovieInformation = () => {
           <Grid item xs={12} sm={12} className={classes.buttonsContainer}>
             <ButtonGroup size="medium" variant="outlined" fullWidth>
               <Button
+                className={classes.buttonLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 href={movie?.homepage}
@@ -238,6 +231,7 @@ const MovieInformation = () => {
                 Website
               </Button>
               <Button
+                className={classes.buttonLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 href={`https://www.imdb.com/title/${movie?.imdb_id}`}
@@ -246,6 +240,7 @@ const MovieInformation = () => {
                 IMDB
               </Button>
               <Button
+                className={classes.buttonLink}
                 onClick={() => setIsOpenModal(true)}
                 href="#"
                 endIcon={<Theaters />}
@@ -255,6 +250,7 @@ const MovieInformation = () => {
             </ButtonGroup>
             <ButtonGroup size="medium" variant="outlined" fullWidth>
               <Button
+                className={classes.buttonLink}
                 onClick={addToFavorite}
                 endIcon={
                   isMovieFavored ? <FavoriteBorderOutlined /> : <Favorite />
@@ -263,20 +259,19 @@ const MovieInformation = () => {
                 {isMovieFavored ? "Unfavorite" : "Favorite"}
               </Button>
               <Button
+                className={classes.buttonLink}
                 onClick={addToWatchlist}
                 endIcon={isMovieWatchlisted ? <Remove /> : <PlusOne />}
               >
                 WatchList
               </Button>
               <Button
+                className={classes.buttonLink}
                 component={Link}
                 to="/"
                 endIcon={<ArrowBack />}
-                sx={{ borderColor: "primary.main" }}
               >
-                <Typography color="inherit" variant="subtitle1">
-                  Back
-                </Typography>
+                Back
               </Button>
             </ButtonGroup>
           </Grid>

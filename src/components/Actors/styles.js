@@ -25,4 +25,14 @@ export default makeStyles((theme) => ({
       justifyContent: "space-around",
     },
   },
+  backButton: {
+    color:
+      theme.palette.mode === "light"
+        ? `#0f0e17 !important`
+        : "#a7a9be !important",
+    borderColor:
+      theme.palette.mode === "light"
+        ? `#0f0e17 !important`
+        : "#a7a9be !important",
+  },
 }));
