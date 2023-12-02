@@ -75,4 +75,5 @@ export const {
   useGetActorInformationQuery,
   useGetMoviesByActorIdQuery,
   useGetListQuery,
+  useGetRatedQuery,
 } = tmdbApi;
