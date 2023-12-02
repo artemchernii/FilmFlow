@@ -19,8 +19,6 @@ const ToggleColorMode = ({ children }) => {
     [mode],
   );
 
-  console.log("theme", theme);
-
   const toggleColorMode = () => {
     setMode((prev) => (prev === "light" ? "dark" : "light"));
   };
