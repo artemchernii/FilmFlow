@@ -37,7 +37,7 @@ const Sidebar = ({ setMobileOpen }) => {
 
   useEffect(() => {
     setMobileOpen();
-  }, [genreIdOrCategoryName]);
+  }, [genreIdOrCategoryName, setMobileOpen]);
 
   const handleSelectGenreOrCategory = (value) => {
     setSelected(value);

@@ -236,7 +236,7 @@ const NavBar = () => {
       }
     };
     logInUser();
-  }, [token]);
+  }, [token, dispatch, sessionIdFromLocalStorage]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>

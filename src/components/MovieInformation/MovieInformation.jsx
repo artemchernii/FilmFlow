@@ -68,13 +68,13 @@ const MovieInformation = () => {
     setIsMovieFavored(
       !!favoriteMovies?.results?.find((favMovie) => favMovie.id === +id),
     );
-  }, [movie, favoriteMovies]);
+  }, [movie, favoriteMovies, id]);
 
   useEffect(() => {
     setIsMovieWatchlisted(
       !!watchlistMovies?.results?.find((favMovie) => favMovie.id === +id),
     );
-  }, [movie, watchlistMovies]);
+  }, [movie, watchlistMovies, id]);
 
   const handleSelectGenre = (genreId) => {
     dispatch(selectGenreOrCategory(genreId));
@@ -134,7 +134,7 @@ const MovieInformation = () => {
         <img
           className={classes.poster}
           src={`http://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
-          alt={movie?.title}
+          alt={movie?.title || "Movie poster"}
         />
       </Grid>
       {/* Details */}

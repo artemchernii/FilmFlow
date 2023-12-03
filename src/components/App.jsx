@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import useStyles from "./styles";
 import useAlan from "./AlanAI/useAlan";
 import { MovieInformation, NavBar, Profile, Movies, Actors } from ".";
+import NotFound from "./NotFound/NotFound";
 
 const App = () => {
   const classes = useStyles();
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="movie/:id" element={<MovieInformation />} />
           <Route path="actors/:id" element={<Actors />} />
           <Route path="profile/:id" element={<Profile />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <div ref={alanBtnContainer} />
