@@ -18,6 +18,7 @@ export default makeStyles((theme) => ({
   links: {
     alignItems: "center",
     fontWeight: "bold",
+    position: "relative",
     [theme.breakpoints.up("xs")]: {
       display: "flex",
       flexDirection: "column",
@@ -29,11 +30,27 @@ export default makeStyles((theme) => ({
   },
   image: {
     borderRadius: "20px",
-    height: "300px",
+    // height: "300px",
+    width: "100%",
     marginBottom: "10px",
     transition: "transform 0.25s ease",
+    position: "relative",
     "&:hover": {
       transform: "scale(1.05)",
     },
+  },
+  rating: {
+    display: "flex",
+    justifyContent: "space-between",
+    position: "absolute",
+    top: "0px",
+    width: "100%",
+    left: "50%",
+    transform: "translateX(-50%)",
+    borderTopLeftRadius: "20px",
+    borderTopRightRadius: "20px",
+    padding: "1px",
+    color: "#fffffe",
+    background: "rgba(0,0,0, .3)",
   },
 }));

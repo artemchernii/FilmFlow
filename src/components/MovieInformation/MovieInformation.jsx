@@ -63,19 +63,18 @@ const MovieInformation = () => {
 
   const [isMovieFavored, setIsMovieFavored] = useState(false);
   const [isMovieWatchlisted, setIsMovieWatchlisted] = useState(false);
-  console.log({ movie });
 
   useEffect(() => {
     setIsMovieFavored(
       !!favoriteMovies?.results?.find((favMovie) => favMovie.id === +id),
     );
-  }, [movie, favoriteMovies]);
+  }, [movie, favoriteMovies, id]);
 
   useEffect(() => {
     setIsMovieWatchlisted(
       !!watchlistMovies?.results?.find((favMovie) => favMovie.id === +id),
     );
-  }, [movie, watchlistMovies]);
+  }, [movie, watchlistMovies, id]);
 
   const handleSelectGenre = (genreId) => {
     dispatch(selectGenreOrCategory(genreId));
@@ -135,7 +134,7 @@ const MovieInformation = () => {
         <img
           className={classes.poster}
           src={`http://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
-          alt={movie?.title}
+          alt={movie?.title || "Movie poster"}
         />
       </Grid>
       {/* Details */}
@@ -290,11 +289,13 @@ const MovieInformation = () => {
           <Box>
             <MovieList movies={recommendations} numberOfMovies={12} />
             <Box display="flex" justifyContent="center">
-              <Pagination
-                page={page}
-                onChange={handleChangePage}
-                count={recommendations.total_pages}
-              />
+              {recommendations?.total_pages > 1 ? (
+                <Pagination
+                  page={page}
+                  onChange={handleChangePage}
+                  count={recommendations.total_pages}
+                />
+              ) : null}
             </Box>
           </Box>
         </Box>

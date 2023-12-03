@@ -236,11 +236,11 @@ const NavBar = () => {
       }
     };
     logInUser();
-  }, [token]);
+  }, [token, dispatch, sessionIdFromLocalStorage]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed">
+      <AppBar position="fixed" className={classes.navbar}>
         <Toolbar className={classes.toolbar}>
           {isMobile ? (
             <IconButton
