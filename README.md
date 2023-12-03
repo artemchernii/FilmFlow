@@ -2,6 +2,8 @@
 
 ## FilmFlare is your ultimate destination for movie enthusiasts and cinephiles alike. Dive into a vast galaxy of cinematic wonders where you can explore, discover, and curate your personalized movie experience effortlessly.
 
+## Live demo: https://fflow.netlify.app/
+
 🍿 Overview:
 Browse through an extensive collection of movies spanning various genres, from timeless classics to the latest releases. Immerse yourself in the world of cinema with detailed movie information, captivating visuals, and insightful reviews, all in one place.
 
@@ -15,13 +17,9 @@ Never miss a movie again! Maintain a dynamic watchlist that adapts to your evolv
 Discover new favorites effortlessly with our smart recommendation engine. Tailored suggestions based on your viewing history and preferences ensure that every movie you explore has the potential to become a cherished addition to your collection.
 
 
-## Project Screen Shot(s)
+## Project Screen Shot
 
-#### Example:   
-
-[ PRETEND SCREEN SHOT IS HERE ]
-
-[ PRETEND OTHER SCREEN SHOT IS HERE ]
+![Project screenshot](https://github.com/artemchernii/FilmFlow/blob/master/public/fflow.png?raw=true)
 
 # FilmFlow
 
