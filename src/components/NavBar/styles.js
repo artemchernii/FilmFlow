@@ -11,6 +11,11 @@ export default makeStyles((theme) => ({
       marginLeft: "0px",
     },
   },
+  navbar: {
+    backgroundImage: "none !important",
+    backgroundColor: theme.palette.mode === "light" && "#fffffe !important",
+    color: theme.palette.mode === "light" && "#0f0e17 !important",
+  },
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up("sm")]: {
@@ -19,7 +24,7 @@ export default makeStyles((theme) => ({
   },
   linkButton: {
     "&:hover": {
-      color: "white !important",
+      // color: "white !important",
       textDecoration: "none",
     },
   },

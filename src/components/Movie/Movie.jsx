@@ -21,13 +21,18 @@ const Movie = ({ movie, index }) => {
               className={classes.image}
             />
           ) : null}
-          <Typography className={classes.title} variant="h5">
+          <Typography className={classes.title} variant="h5" fontWeight="bold">
             {movie.title}
           </Typography>
-          <Tooltip disableTouchListener title={`${movie.vote_average} / 10`}>
+          <Tooltip
+            className={classes.rating}
+            disableTouchListener
+            title={`${movie.vote_average} / 10`}
+          >
             <div>
               <Rating readOnly value={movie.vote_average / 2} precision={0.1} />
             </div>
+            <div>{`${Number(movie.vote_average).toFixed(1)} / 10`}</div>
           </Tooltip>
         </Link>
       </Grow>

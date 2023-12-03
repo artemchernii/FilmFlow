@@ -57,12 +57,14 @@ const Movies = () => {
       </Helmet>
       <FeaturedMovie movie={movies?.results[0]} />
       <MovieList movies={movies} numberOfMovies={numberOfMovies} excludeFirst />
-      <Box display="flex" justifyContent="center">
-        <Pagination
-          page={page}
-          onChange={handleChangePage}
-          count={movies.total_pages}
-        />
+      <Box display="flex" justifyContent="center" marginTop="2rem">
+        {movies?.total_pages > 1 ? (
+          <Pagination
+            page={page}
+            onChange={handleChangePage}
+            count={movies.total_pages}
+          />
+        ) : null}
       </Box>
     </>
   );

@@ -30,7 +30,6 @@ const Actors = () => {
   const handleChangePage = (event, step) => {
     setPage(step);
   };
-  console.log(relatedMovies);
 
   if (isFetching) {
     return <Spinner marginTop="1rem" />;
@@ -55,7 +54,7 @@ const Actors = () => {
         <img
           className={classes.poster}
           src={`http://image.tmdb.org/t/p/w500/${actor?.profile_path}`}
-          alt={actor?.name}
+          alt={actor?.name || "Actor"}
         />
       </Grid>
       <Grid

@@ -1,13 +1,15 @@
 import { makeStyles } from "@mui/styles";
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
   profileContainer: {
     border: "1px solid",
-    borderColor: "#0f0e17",
+    borderColor: theme.palette.mode === "dark" ? "#0f0e17" : "transparent",
     borderRadius: "10px",
     padding: "2rem",
     margin: "10px auto",
-    background: "#222",
+    background: theme.palette.mode === "dark" ? "#222" : "#fffffe",
+    boxShadow:
+      theme.palette.mode === "dark" ? "none" : "1px 3px 10px rgba(0,0,0,.4)",
     // background:
     //   "radial-gradient(circle at 10% 20%, rgb(0, 0, 0) 0%, rgb(64, 64, 64) 99.2%)",
   },
@@ -24,10 +26,12 @@ export default makeStyles(() => ({
   },
   listOfWatchlistAndFav: {
     border: "1px solid",
-    borderColor: "#0f0e17",
+    borderColor: theme.palette.mode === "dark" ? "#0f0e17" : "transparent",
     borderRadius: "10px",
     padding: "2rem",
     margin: "10px auto",
-    background: "#222",
+    background: theme.palette.mode === "dark" ? "#222" : "#fffffe",
+    boxShadow:
+      theme.palette.mode === "dark" ? "none" : "1px 3px 10px rgba(0,0,0,.4)",
   },
 }));

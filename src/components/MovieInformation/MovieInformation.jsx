@@ -63,7 +63,6 @@ const MovieInformation = () => {
 
   const [isMovieFavored, setIsMovieFavored] = useState(false);
   const [isMovieWatchlisted, setIsMovieWatchlisted] = useState(false);
-  console.log({ movie });
 
   useEffect(() => {
     setIsMovieFavored(
@@ -290,11 +289,13 @@ const MovieInformation = () => {
           <Box>
             <MovieList movies={recommendations} numberOfMovies={12} />
             <Box display="flex" justifyContent="center">
-              <Pagination
-                page={page}
-                onChange={handleChangePage}
-                count={recommendations.total_pages}
-              />
+              {recommendations?.total_pages > 1 ? (
+                <Pagination
+                  page={page}
+                  onChange={handleChangePage}
+                  count={recommendations.total_pages}
+                />
+              ) : null}
             </Box>
           </Box>
         </Box>

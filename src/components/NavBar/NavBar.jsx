@@ -240,7 +240,7 @@ const NavBar = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed">
+      <AppBar position="fixed" className={classes.navbar}>
         <Toolbar className={classes.toolbar}>
           {isMobile ? (
             <IconButton
